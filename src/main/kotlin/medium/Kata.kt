@@ -16,8 +16,7 @@ fun <E> josephusPermutation(collectionDeque: ArrayDeque<E>, steps: Int): List<E>
     val resultCollection = mutableListOf<E>()
     while (collectionDeque.isNotEmpty()) {
         repeat(steps - 1) {
-            val tempItem = collectionDeque.removeFirst()
-            collectionDeque.addLast(tempItem)
+            collectionDeque.addLast(collectionDeque.removeFirst())
         }
         resultCollection.add(collectionDeque.removeFirst())
     }
