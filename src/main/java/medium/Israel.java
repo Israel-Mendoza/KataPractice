@@ -1,7 +1,7 @@
 package medium;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 
 public class Israel {
@@ -19,8 +19,7 @@ public class Israel {
      * @param steps the number of steps to take before removing an element from the collection
      * @return a new list containing the Josephus permutation of the input collection
      */
-    public static <E> List<E> josephusPermutation(ArrayDeque<E> items, int steps) {
-
+    public static <E> List<E> josephusPermutation(Deque<E> items, int steps) {
         if (items == null) {
             throw new IllegalArgumentException("ArrayDeque must not be null");
         }
