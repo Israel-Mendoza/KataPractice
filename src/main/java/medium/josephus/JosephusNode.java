@@ -1,28 +1,28 @@
 package medium.josephus;
 
 // A simple node class for the Josephus problem
-public class JosephusNode {
+public class JosephusNode<T> {
     // The node is capable of storing any data type (Integer, String, Double, etc...)
-    private Object data;
-    private JosephusNode next;
+    private T data;
+    private JosephusNode<T> next;
 
-    public JosephusNode(Object data) {
+    public JosephusNode(T data) {
         this.data = data;
     }
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 
-    public JosephusNode getNext() {
+    public JosephusNode<T> getNext() {
         return next;
     }
 
-    public void setNext(JosephusNode next) {
+    public void setNext(JosephusNode<T> next) {
         this.next = next;
     }
 
