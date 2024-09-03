@@ -68,3 +68,24 @@ fun getPairs(numbers: List<Int>, target: Int): List<Pair<Int, Int>> {
     }
     return results
 }
+
+/**
+ * Checks if a given string is an acronym of another string.
+ *
+ * @param possibleAcronym The possible acronym to check.
+ * @param meaning The string that the acronym might represent.
+ * @return True if `possibleAcronym` is an acronym of `meaning`, false otherwise.
+ */
+fun isAcronym(possibleAcronym: String, meaning: String): Boolean {
+    // Grabbing a list of words out of the passed meaning.
+    val meaningWords: List<String> = meaning.split(Regex("\\s+")).map { it.lowercase() }
+    // Size of acronym and meaning words must be the same.
+    if (possibleAcronym.length != meaningWords.size) return false
+
+    val lowerPossibleAcronym = possibleAcronym.lowercase()
+
+    for (index in meaningWords.indices) {
+        if (meaningWords[index].first() != lowerPossibleAcronym[index]) return false
+    }
+    return true
+}

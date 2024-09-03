@@ -74,4 +74,24 @@ public class Israel {
         }
         return results;
     }
+
+    /**
+     * Checks if a given string is an acronym of another string.
+     *
+     * @param possibleAcronym The possible acronym to check.
+     * @param meaning The string that the acronym might represent.
+     * @return True if `possibleAcronym` is an acronym of `meaning`, false otherwise.
+     */
+    public static boolean isAcronym(String possibleAcronym, String meaning) {
+        String[] meaningWords = meaning.toLowerCase().split("\\s+");
+        if (possibleAcronym.length() != meaningWords.length) return false;
+        String lowerPossibleAcronym = possibleAcronym.toLowerCase();
+
+        for (int index = 0; index < meaningWords.length; index++) {
+            if (meaningWords[index].charAt(0) != lowerPossibleAcronym.charAt(index)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
