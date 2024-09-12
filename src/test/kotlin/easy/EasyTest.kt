@@ -1,8 +1,6 @@
 package easy
 
-import dev.artisrabocanvi.easy.getPairs
-import dev.artisrabocanvi.easy.isAcronym
-import dev.artisrabocanvi.easy.secondMinAndMax
+import dev.artisrabocanvi.easy.*
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.equals.shouldBeEqual
@@ -104,6 +102,37 @@ class EasyTest {
             Arguments.of("FYI", "For your minded information"),
             Arguments.of("DIY", "Do not do it yourself"),
             Arguments.of("EOD", "End of month")
+        )
+    }
+
+    @Nested
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    inner class HighestScoringWord {
+
+        @ParameterizedTest
+        @MethodSource("dataProvider")
+        fun `returns the correct word based on the score`(sentence: String, expectedWord: String) {
+            val actualWord = highestScoringWord(sentence)
+            actualWord shouldBeEqual expectedWord
+        }
+
+        @ParameterizedTest
+        @MethodSource("dataProvider")
+        fun `functional returns the correct word based on the score`(sentence: String, expectedWord: String) {
+            val actualWord = highestScoringWordFunctional(sentence)
+            actualWord shouldBeEqual expectedWord
+        }
+
+        private fun dataProvider() = listOf(
+            Arguments.of("Life is not a problem to be solved", "problem"),
+            Arguments.of("You did it", "You"),
+            Arguments.of("Java sucks", "sucks"),
+            Arguments.of("I do not know what to do", "know"),
+            Arguments.of("I like it as it is", "like"),
+            Arguments.of("What time are we climbing up the volcano", "volcano"),
+            Arguments.of("I wish I knew you as I thought I did", "thought"),
+            Arguments.of("aabb bbcc ccbb bbaa", "bbcc"),
+            Arguments.of("c ab", "c"),
         )
     }
 }

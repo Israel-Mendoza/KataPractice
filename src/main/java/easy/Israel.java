@@ -94,4 +94,44 @@ public class Israel {
         }
         return true;
     }
+
+    // Highest Scoring Word
+    // See https://www.codewars.com/kata/57eb8fcdf670e99d9b000272
+
+    // Helping record, to keep track of the words and their scores:
+    private record ScoredWord(String word, int score) {}
+
+    /**
+     * Calculates the score of a word.
+     *
+     * <p>The score is determined by summing the ASCII values of the lowercase letters in the word, minus 96.
+     *
+     * @return The calculated score of the word.
+     */
+    private static int getWordScore(String word) {
+        int score = 0;
+        for (char c : word.trim().toLowerCase().toCharArray()) {
+            score += (c - 96);
+        }
+        return score;
+    }
+
+    /**
+     * Finds the word with the highest score within a given sentence.
+     *
+     * @param sentenceWithWords The sentence containing the words to be evaluated.
+     * @return The word with the highest score.
+     */
+    public static String highestScoringWord(String sentenceWithWords) {
+        ScoredWord scoredWord = new ScoredWord("", 0);
+
+        for (String word : sentenceWithWords.split("\\s+")) {
+            int score = getWordScore(word);
+            if (score > scoredWord.score) {
+                scoredWord = new ScoredWord(word, score);
+            }
+        }
+
+        return scoredWord.word;
+    }
 }

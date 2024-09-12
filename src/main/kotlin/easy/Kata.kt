@@ -13,10 +13,7 @@ package dev.artisrabocanvi.easy
  */
 fun secondMinAndMax(numbers: List<Int>): Pair<Int, Int> = numbers.fold(
     mutableListOf(
-        Integer.MAX_VALUE,
-        Integer.MAX_VALUE,
-        Integer.MIN_VALUE,
-        Integer.MIN_VALUE
+        Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE
     )
 ) { acc, num ->
     if (num < acc[0]) {
@@ -89,3 +86,48 @@ fun isAcronym(possibleAcronym: String, meaning: String): Boolean {
     }
     return true
 }
+
+/**
+ * Finds the word with the highest score within a given sentence.
+ *
+ * @param sentenceWithWords The sentence containing the words to be evaluated.
+ * @return The word with the highest score.
+ */
+fun highestScoringWord(sentenceWithWords: String): String {
+    var result = "" to 0
+    for (word in sentenceWithWords.split(" ")) {
+        val score = word.score()
+        if (score > result.second) {
+            result = word to score
+        }
+    }
+    return result.first
+}
+
+/**
+ * Finds the word with the highest score within a given sentence.
+ *
+ * <p> This is an implementation using functional programming style.
+ *
+ * @param sentenceWithWords The sentence containing the words to be evaluated.
+ * @return The word with the highest score.
+ */
+fun highestScoringWordFunctional(sentenceWithWords: String): String = sentenceWithWords.split(Regex("\\s+"))
+    .fold("" to 0) { acc, word ->
+        val score = word.score()
+        if (score > acc.second) {
+            word to score
+        } else {
+            acc
+        }
+    }.first
+
+
+/**
+ * Calculates the score of a word.
+ *
+ * <p>The score is determined by summing the ASCII values of the lowercase letters in the word, minus 96.
+ *
+ * @return The calculated score of the word.
+ */
+fun String.score(): Int = this.trim().lowercase().map { it.code - 96 }.sum()
