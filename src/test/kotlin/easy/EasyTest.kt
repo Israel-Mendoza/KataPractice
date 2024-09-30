@@ -55,8 +55,11 @@ class EasyTest {
         // Test data provider
         private fun dataProvider() = listOf(
             Arguments.of(listOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10), 1 to 9),
+            Arguments.of(listOf(8, 1, 9, 3, 4, 8, 6, 10, 0, 2, 7), 1 to 9),
             Arguments.of(listOf(0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5), 1 to 4),
+            Arguments.of(listOf(2, 2, 1, 1, 0, 0, 5, 4, 4, 3, 3), 1 to 4),
             Arguments.of(listOf(0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5), 1 to 4),
+            Arguments.of(listOf(1, 1, 0, 2, 2, 5, 5, 3, 3, 4, 4, 4), 1 to 4),
             Arguments.of(listOf(-9999, 0, 9999, 9999999), 0 to 9999),
             Arguments.of(listOf(-2, -1, 0, 1, 2), -1 to 1)
         )
